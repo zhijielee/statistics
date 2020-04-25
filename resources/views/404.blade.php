@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,21 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>人员流动数据显示</title>
-    <link href="/template/dist/css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <title>404 Error - SB Admin</title>
+    <link href="css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
-<body class="sb-nav-fixed">
-{{--    @include("header")--}}
-<div id="layoutSidenav">
-    @include("sidebar")
-
-    <div id="layoutSidenav_content">
+<body>
+<div id="layoutError">
+    <div id="layoutError_content">
         <main>
-            @yield('content')
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="text-center mt-4">
+                            <img class="mb-4 img-error" src="assets/img/error-404-monochrome.svg" />
+                            <p class="lead">此功能正在开发中</p>
+                            <a href="/"><i class="fas fa-arrow-left mr-1"></i>Return to index</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
-
+    </div>
+    <div id="layoutError_footer">
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-between small">
@@ -30,13 +36,9 @@
             </div>
         </footer>
     </div>
-
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="/template/dist/js/scripts.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-<script src="/template/dist/assets/demo/datatables-demo.js"></script>
+<script src="js/scripts.js"></script>
 </body>
 </html>

@@ -12,8 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('dashboard');
 });
+
+
 //Route::get('/', 'IndexController@index');
 //
 //

@@ -78,7 +78,7 @@
 
                             <div class="col-md-4 col-sm-4  profile_details">
                                 <div class="well profile_view">
-                                    <div class="col-sm-12">
+                                    <div class="left col-sm-12">
                                         <h4 class="brief"><i>Digital Strategist</i></h4>
                                         <div class="left animated flipInY col-lg-11 col-md-11 col-sm-11">
                                             <div class="tile-stats">
@@ -88,20 +88,15 @@
                                                 <div class="count">179</div>
 
                                                 <h3>第55教学楼</h3>
-{{--                                                <p>Lorem ipsum psdea itgum rixt.</p>--}}
+                                                <p>新校区</p>
                                             </div>
                                         </div>
-{{--                                        <div class="left col-sm-7">--}}
-{{--                                            <h2>Nicole Pearson</h2>--}}
-{{--                                            <p><strong>About: </strong> Web Designer / UI. </p>--}}
-{{--                                            <ul class="list-unstyled">--}}
-{{--                                                <li><i class="fa fa-building"></i> Address: </li>--}}
-{{--                                                <li><i class="fa fa-phone"></i> Phone #: </li>--}}
-{{--                                            </ul>--}}
-{{--                                        </div>--}}
                                         <div class="right col-sm-5 text-center">
                                             <img src="images/user.png" alt="" class="img-circle img-fluid">
                                         </div>
+{{--                                        <div class="right col-sm-5 text-center">--}}
+{{--                                            <img src="images/user.png" alt="" class="img-circle img-fluid">--}}
+{{--                                        </div>--}}
                                     </div>
                                     <div class=" bottom text-center">
                                         <div class=" col-sm-6 emphasis">
@@ -114,11 +109,11 @@
                                                 <a href="#"><span class="fa fa-star-o"></span></a>
                                             </p>
                                         </div>
-                                        <div class=" col-sm-6 emphasis">
+                                        <div class="col-sm-6 emphasis">
                                             <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
                                                 </i> <i class="fa fa-comments-o"></i> </button>
                                             <button type="button" class="btn btn-primary btn-sm">
-                                                <i class="fa fa-user"> </i> 查看详情
+                                                <i class="fa-building-o"> </i> 查看详情
                                             </button>
                                         </div>
                                     </div>

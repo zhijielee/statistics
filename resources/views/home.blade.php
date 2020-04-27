@@ -1,42 +1,91 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>人员流动数据显示</title>
-    <link href="/template/dist/css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gentelella Alela! | </title>
+
+    <!-- Bootstrap -->
+    <link href="/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/gentelella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/gentelella/vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- Datatables -->
+
+    <link href="/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="/gentelella/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+{{--    <link href="/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">--}}
+{{--    <link href="/gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">--}}
+{{--    <link href="/gentelella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">--}}
+
+    <!-- Custom Theme Style -->
+    <link href="/gentelella/build/css/custom.min.css" rel="stylesheet">
 </head>
-<body class="sb-nav-fixed">
-{{--    @include("header")--}}
-<div id="layoutSidenav">
-    @include("sidebar")
 
-    <div id="layoutSidenav_content">
-        <main>
-            @yield('content')
-        </main>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
 
-        <footer class="py-4 bg-light mt-auto">
-            <div class="container-fluid">
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; zhijie.li 2020</div>
-                </div>
+        @include("sidebar")
+        <!-- top navigation -->
+
+        @include("header")
+        <!-- /top navigation -->
+
+        <!-- page content -->
+
+
+        <!-- /page content -->
+        <div class="right_col" role="main">
+            @yield("content")
+        </div>
+
+{{--        @yield('content')--}}
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
             </div>
+            <div class="clearfix"></div>
         </footer>
+        <!-- /footer content -->
     </div>
-
 </div>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="/template/dist/js/scripts.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-<script src="/template/dist/assets/demo/datatables-demo.js"></script>
+
+<!-- jQuery -->
+<script src="/gentelella/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/gentelella/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FastClick -->
+<script src="/gentelella/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="/gentelella/vendors/nprogress/nprogress.js"></script>
+
+<!-- Datatables -->
+<script src="/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="/gentelella/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/gentelella/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="/gentelella/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+{{--<script src="/gentelella/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>--}}
+<script src="/gentelella/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+{{--<script src="/gentelella/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>--}}
+{{--<script src="/gentelella/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>--}}
+{{--<script src="/gentelella/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>--}}
+{{--<script src="/gentelella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>--}}
+{{--<script src="/gentelella/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>--}}
+{{--<script src="/gentelella/vendors/jszip/dist/jszip.min.js"></script>--}}
+<script src="/gentelella/vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="/gentelella/vendors/pdfmake/build/vfs_fonts.js"></script>
+
+
+<!-- Custom Theme Scripts -->
+<script src="/gentelella/build/js/custom.min.js"></script>
 </body>
 </html>

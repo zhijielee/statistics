@@ -11,11 +11,11 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-Route::get('/', 'IndexController@index');
-
-
-
-Route::get('/excel', 'IndexController@toExcel');
+Route::get('/', function () {
+    return view('index');
+});
+//Route::get('/', 'IndexController@index');
+//
+//
+//
+//Route::get('/excel', 'IndexController@toExcel');

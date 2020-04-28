@@ -11,13 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+//Route::get('/', function () {
+//    return view('dashboard');
+//});
 
 
-//Route::get('/', 'IndexController@index');
-//
-//
-//
-//Route::get('/excel', 'IndexController@toExcel');
+// 首页随机建筑数据展示
+Route::get("/", "IndexController@index");
+
+// 多条件查询，数据 table 展示
+Route::get("/info", "IndexController@info");
+
+// 搜索到的所有数据的excel 导出
+Route::get("excel", "IndexController@toExcel");
+

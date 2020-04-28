@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>数据统计平台</span></a>
+            <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>TJU疫情防控数据平台</span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -25,9 +25,9 @@
             <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                    <li><a href="/info"><i class="fa fa-table"></i> 数据统计 </a>
+                    <li><a href="/"><i class="fa fa-bar-chart-o"></i>实时情况</a>
                     </li>
-                    <li><a href="/"><i class="fa fa-bar-chart-o"></i> 人员行踪 </a>
+                    <li><a href="/info"><i class="fa fa-table"></i>信息检索</a>
                     </li>
                 </ul>
             </div>

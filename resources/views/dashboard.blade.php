@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Contact Form | Gentelella Alela! by Colorlib</title>
+    <title>校内人员流动数据</title>
 
     <!-- Bootstrap -->
     <link href="/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

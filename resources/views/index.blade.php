@@ -19,6 +19,8 @@
     <!-- iCheck -->
     <link href="/gentelella/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- Datatables -->
+    <!-- bootstrap-daterangepicker -->
+    <link href="/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- bootstrap-datetimepicker -->
     <link href="/gentelella/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
 
@@ -233,9 +235,9 @@
                             </div>
                             <div class="x_content">
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                            Date and Time
-                                            <form class="">
+                                    <div class="col-sm-5">
+                                        &nbsp;&nbsp;&nbsp;Date and Time
+                                            <form class="col-sm-12">
                                                 <fieldset>
                                                     <div class="control-group">
                                                         <div class="controls">
@@ -247,14 +249,43 @@
                                                     </div>
                                                 </fieldset>
                                             </form>
-                                        </div>
-                                    <div class="col-sm-6">
+                                    </div>
+                                    <div class="col-sm-2">
                                             <div id="datatable_filter" class="dataTables_filter">
-                                                <label>Search:
-                                                    <input type="search" class="form-control input-sm" placeholder="用户名" aria-controls="datatable">
+                                                <label>姓名:
+                                                    <input name="user_name" type="search" class="form-control input-sm" placeholder="姓名" aria-controls="datatable">
                                                 </label>
                                             </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div id="datatable_filter" class="dataTables_filter">
+                                            <label>单位名:
+                                                <input name="group_name" type="search" class="form-control input-sm" placeholder="单位名称" aria-controls="datatable">
+                                            </label>
                                         </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div id="datatable_filter" class="dataTables_filter">
+                                            <label>建筑名称:
+                                                <input name="build_name" type="search" class="form-control input-sm" placeholder="建筑名称" aria-controls="datatable">
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <div id="datatable_filter" class="dataTables_filter">
+                                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-info" type="submit">
+                                                        <i class="glyphicon glyphicon-search">
+                                                        </i></button>
+                                                </span>
+                                            </label>
+                                        </div>
+
+
+
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -400,22 +431,12 @@
 <script src="/gentelella/vendors/nprogress/nprogress.js"></script>
 <!-- iCheck -->
 <script src="/gentelella/vendors/iCheck/icheck.min.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="/gentelella/vendors/moment/min/moment.min.js"></script>
+<script src="/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap-datetimepicker -->
-<script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/gentelella/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
-<!-- Datatables -->
-{{--<script src="/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js"></script>--}}
-{{--<script src="/gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>--}}
-{{--<script src="/gentelella/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>--}}
-{{--<script src="/gentelella/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>--}}
-{{--<script src="/gentelella/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>--}}
-{{--<script src="/gentelella/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>--}}
-{{--<script src="/gentelella/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>--}}
-{{--<script src="/gentelella/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>--}}
-{{--<script src="/gentelella/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>--}}
-{{--<script src="/gentelella/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>--}}
-{{--<script src="/gentelella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>--}}
-{{--<script src="/gentelella/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>--}}
 <script src="/gentelella/vendors/jszip/dist/jszip.min.js"></script>
 <script src="/gentelella/vendors/pdfmake/build/pdfmake.min.js"></script>
 <script src="/gentelella/vendors/pdfmake/build/vfs_fonts.js"></script>

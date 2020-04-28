@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\CommonController as Func;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Excel as Excel;
+use PhpOffice\PhpSpreadsheet;
 
 class IndexController extends Controller {
 
@@ -220,34 +221,71 @@ class IndexController extends Controller {
             "where Q.CREATE_TIME between " . $start . " and ".$end . $user_sql . $build_name." ) as T ".
             "on T.group_id = G.SID where 1 = 1".$group_name);
 
-//        dd($result);
 
-        $title = [
-            0 => '工号/学号',
-            1 => '姓名',
-            2 => '时间',
-            3 => '进出类型',
-            4 => '体温',
-            5 => '单位',
-            6 => '楼宇'
-        ];
-        $export = null;
+        set_time_limit(0);
         foreach ($result as $key => $val) {
-            $export[$key][0] = $val->user_id;
-            $export[$key][1] = $val->user_name;
-            $export[$key][2] = $val->time;
-            $export[$key][3] = $val->goin;
-            $export[$key][4] = $val->body;
-            $export[$key][5] = $val->group_name;
-            $export[$key][6] = $val->build_name;
+            $arrData[] = [
+                "id" => $val->user_id,
+                "name" => $val->user_name,
+                "time" => $val->time,
+                "goin" => $val->goin,
+                "body" => $val->body,
+                "group" => $val->group_name,
+                "build" => $val->build_name
+            ];
         }
-        $sell = array_merge($title, $export);
-        $excel->create('数据',function($excel) use ($sell){
-            $excel->sheet('score', function($sheet) use ($sell){
-                $sheet->rows($sell);
-            });
-        })->export('csv');
+        $title = [
+            [
+                '工号/学号','姓名','时间','进出类型','体温','单位','楼宇'
+            ]
+        ];
+        $arrData = array_merge($title, $arrData);
+        $spreadsheet = new PhpSpreadsheet\Spreadsheet();
+        $styleArray = [
+            'font' => [
+                'bold' => true,
+                'size' => 14,
+            ],
+        ];
+
+        $spreadsheet->getActiveSheet()->getStyle('A1:G1')->applyFromArray($styleArray);
+        $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(25);
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(25);
+        $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(25);
+        $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(25);
+        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(25);
+        $spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(25);
+        $spreadsheet->getActiveSheet()->getColumnDimension('G')->setWidth(25);
+        $spreadsheet->getActiveSheet()->fromArray($arrData);
+        $writer = new PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+        header('Content-Description: File Transfer');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename=数据详情.xlsx');
+        header('Cache-Control: max-age=0');
+        $writer->save('php://output');
+        $fp = fopen('php://output', 'a');//打开output流
+        mb_convert_variables('GBK', 'UTF-8', $columns);
+        fputcsv($fp, $columns);//将数据格式化为csv格式并写入到output流中
+
+        $dataNum = count( $arrData );
+        $perSize = 2000;//每次导出的条数
+        $pages = ceil($dataNum / $perSize);
+
+        for ($i = 1; $i <= $pages; $i++) {
+            foreach ($arrData as $item) {
+                mb_convert_variables('GBK', 'UTF-8', $item);
+                fputcsv($fp, $item);
+            }
+            //刷新输出缓冲到浏览器
+            ob_flush();
+            flush();//必须同时使用 ob_flush() 和flush() 函数来刷新输出缓冲。
+        }
+        fclose($fp);
         Func::goBack();
+        exit();
     }
 
 }

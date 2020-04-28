@@ -36,20 +36,20 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Contacts Design</h3>
+                        <h3>建筑内实时人数 </h3>
                     </div>
 
 {{--                    搜索按钮，考虑去掉--}}
-                    <div class="title_right">
-                        <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="title_right">--}}
+{{--                        <div class="col-md-5 col-sm-5  form-group pull-right top_search">--}}
+{{--                            <div class="input-group">--}}
+{{--                                <input type="text" class="form-control" placeholder="Search for...">--}}
+{{--                                <span class="input-group-btn">--}}
+{{--                      <button class="btn btn-default" type="button">Go!</button>--}}
+{{--                    </span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
 
                 <div class="clearfix"></div>
@@ -59,104 +59,344 @@
                         <div class="x_content">
 {{--                            首字母选择，类似于分页--}}
                             <div class="col-md-12 col-sm-12  text-center">
-                                <ul class="pagination pagination-split">
-                                    <li><a href="#">A</a></li>
-                                    <li><a href="#">B</a></li>
-                                    <li><a href="#">C</a></li>
-                                    <li><a href="#">D</a></li>
-                                    <li><a href="#">E</a></li>
-                                    <li>...</li>
-                                    <li><a href="#">W</a></li>
-                                    <li><a href="#">X</a></li>
-                                    <li><a href="#">Y</a></li>
-                                    <li><a href="#">Z</a></li>
-                                </ul>
+{{--                                <ul class="pagination pagination-split">--}}
+{{--                                    <li><a href="#">A</a></li>--}}
+{{--                                    <li><a href="#">B</a></li>--}}
+{{--                                    <li><a href="#">C</a></li>--}}
+{{--                                    <li><a href="#">D</a></li>--}}
+{{--                                    <li><a href="#">E</a></li>--}}
+{{--                                    <li>...</li>--}}
+{{--                                    <li><a href="#">W</a></li>--}}
+{{--                                    <li><a href="#">X</a></li>--}}
+{{--                                    <li><a href="#">Y</a></li>--}}
+{{--                                    <li><a href="#">Z</a></li>--}}
+{{--                                </ul>--}}
                             </div>
 
                             <div class="clearfix"></div>
 
-
-                            <div class="col-md-4 col-sm-4  profile_details">
+                            <div  class="col-md-4 col-sm-4 profile_details">
                                 <div class="well profile_view">
                                     <div class="left col-sm-12">
-                                        <h4 class="brief"><i>Digital Strategist</i></h4>
-                                        <div class="left animated flipInY col-lg-11 col-md-11 col-sm-11">
+                                        <h4 class="brief"><i>实时人数</i></h4>
+                                        <div class="left col-md-12">
                                             <div class="tile-stats">
-                                                <div class="icon"><i class="glyphicon glyphicon-home fa-caret-square-o-right" aria-hidden="true"></i>
+                                                <div class="icon"><i class="glyphicon glyphicon-home fa fa-caret-square-o-right"></i>
                                                 </div>
-{{--                                                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>--}}
                                                 <div class="count">179</div>
-
-                                                <h3>第55教学楼</h3>
-                                                <p>新校区</p>
+                                                <h3>55教学楼</h3>
                                             </div>
                                         </div>
-                                        <div class="right col-sm-5 text-center">
-                                            <img src="images/user.png" alt="" class="img-circle img-fluid">
+                                    </div>
+                                    <div class=" bottom text-center">
+                                        <div class=" col-sm-12 emphasis">
+                                            <p class="ratings">
+                                             <a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                 天津大学北洋园校区
+                                             </a>
+                                            </p>
                                         </div>
+                                        <div class="col-md-12  pricing_footer">
+                                            <a href="{{url("/#")}}">
+                                                <button  type="button" class="btn btn-primary btn-block">
+                                                    <i class="fa fa-building-o"> </i> 查看详情
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="col-md-4 col-sm-4 profile_details">
+                                <div class="well profile_view">
+                                    <div class="left col-sm-12">
+                                        <h4 class="brief"><i>实时人数</i></h4>
+                                        <div class="left col-md-12">
+                                            <div class="tile-stats">
+                                                <div class="icon"><i class="glyphicon glyphicon-home fa fa-caret-square-o-right"></i>
+                                                </div>
+                                                <div class="count">179</div>
+                                                <h3>55教学楼</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" bottom text-center">
+                                        <div class=" col-sm-12 emphasis">
+                                            <p class="ratings">
+                                                <a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    天津大学北洋园校区
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12  pricing_footer">
+                                            <a href="{{url("/#")}}">
+                                                <button  type="button" class="btn btn-primary btn-block">
+                                                    <i class="fa fa-building-o"> </i> 查看详情
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="col-md-4 col-sm-4 profile_details">
+                                <div class="well profile_view">
+                                    <div class="left col-sm-12">
+                                        <h4 class="brief"><i>实时人数</i></h4>
+                                        <div class="left col-md-12">
+                                            <div class="tile-stats">
+                                                <div class="icon"><i class="glyphicon glyphicon-home fa fa-caret-square-o-right"></i>
+                                                </div>
+                                                <div class="count">179</div>
+                                                <h3>55教学楼</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" bottom text-center">
+                                        <div class=" col-sm-12 emphasis">
+                                            <p class="ratings">
+                                                <a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    天津大学北洋园校区
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12  pricing_footer">
+                                            <a href="{{url("/#")}}">
+                                                <button  type="button" class="btn btn-primary btn-block">
+                                                    <i class="fa fa-building-o"> </i> 查看详情
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="col-md-4 col-sm-4 profile_details">
+                                <div class="well profile_view">
+                                    <div class="left col-sm-12">
+                                        <h4 class="brief"><i>实时人数</i></h4>
+                                        <div class="left col-md-12">
+                                            <div class="tile-stats">
+                                                <div class="icon"><i class="glyphicon glyphicon-home fa fa-caret-square-o-right"></i>
+                                                </div>
+                                                <div class="count">179</div>
+                                                <h3>55教学楼</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" bottom text-center">
+                                        <div class=" col-sm-12 emphasis">
+                                            <p class="ratings">
+                                                <a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    天津大学北洋园校区
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12  pricing_footer">
+                                            <a href="{{url("/#")}}">
+                                                <button  type="button" class="btn btn-primary btn-block">
+                                                    <i class="fa fa-building-o"> </i> 查看详情
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="col-md-4 col-sm-4 profile_details">
+                                <div class="well profile_view">
+                                    <div class="left col-sm-12">
+                                        <h4 class="brief"><i>实时人数</i></h4>
+                                        <div class="left col-md-12">
+                                            <div class="tile-stats">
+                                                <div class="icon"><i class="glyphicon glyphicon-home fa fa-caret-square-o-right"></i>
+                                                </div>
+                                                <div class="count">179</div>
+                                                <h3>55教学楼</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" bottom text-center">
+                                        <div class=" col-sm-12 emphasis">
+                                            <p class="ratings">
+                                                <a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    天津大学北洋园校区
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12  pricing_footer">
+                                            <button type="button" class="btn btn-primary btn-block">
+                                                <i class="fa fa-building-o"> </i> 查看详情
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div  class="col-md-4 col-sm-4 profile_details">
+                                <div class="well profile_view">
+                                    <div class="left col-sm-12">
+                                        <h4 class="brief"><i>实时人数</i></h4>
+                                        <div class="left col-md-12">
+                                            <div class="tile-stats">
+                                                <div class="icon"><i class="glyphicon glyphicon-home fa fa-caret-square-o-right"></i>
+                                                </div>
+                                                <div class="count">179</div>
+                                                <h3>55教学楼</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" bottom text-center">
+                                        <div class=" col-sm-12 emphasis">
+                                            <p class="ratings">
+                                                <a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    天津大学北洋园校区
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12  pricing_footer">
+                                            <button type="button" class="btn btn-primary btn-block">
+                                                <i class="fa fa-building-o"> </i> 查看详情
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div  class="col-md-4 col-sm-4 profile_details">
+                                <div class="well profile_view">
+                                    <div class="left col-sm-12">
+                                        <h4 class="brief"><i>实时人数</i></h4>
+                                        <div class="left col-md-12">
+                                            <div class="tile-stats">
+                                                <div class="icon"><i class="glyphicon glyphicon-home fa fa-caret-square-o-right"></i>
+                                                </div>
+                                                <div class="count">179</div>
+                                                <h3>55教学楼</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" bottom text-center">
+                                        <div class=" col-sm-12 emphasis">
+                                            <p class="ratings">
+                                                <a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    天津大学北洋园校区
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12  pricing_footer">
+                                            <button type="button" class="btn btn-primary btn-block">
+                                                <i class="fa fa-building-o"> </i> 查看详情
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div  class="col-md-4 col-sm-4 profile_details">
+                                <div class="well profile_view">
+                                    <div class="left col-sm-12">
+                                        <h4 class="brief"><i>实时人数</i></h4>
+                                        <div class="left col-md-12">
+                                            <div class="tile-stats">
+                                                <div class="icon"><i class="glyphicon glyphicon-home fa fa-caret-square-o-right"></i>
+                                                </div>
+                                                <div class="count">179</div>
+                                                <h3>55教学楼</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" bottom text-center">
+                                        <div class=" col-sm-12 emphasis">
+                                            <p class="ratings">
+                                                <a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    天津大学北洋园校区
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12  pricing_footer">
+                                            <button type="button" class="btn btn-primary btn-block">
+                                                <i class="fa fa-building-o"> </i> 查看详情
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div  class="col-md-4 col-sm-4 profile_details">
+                                <div class="well profile_view">
+                                    <div class="left col-sm-12">
+                                        <h4 class="brief"><i>实时人数</i></h4>
+                                        <div class="left col-md-12">
+                                            <div class="tile-stats">
+                                                <div class="icon"><i class="glyphicon glyphicon-home fa fa-caret-square-o-right"></i>
+                                                </div>
+                                                <div class="count">179</div>
+                                                <h3>55教学楼</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" bottom text-center">
+                                        <div class=" col-sm-12 emphasis">
+                                            <p class="ratings">
+                                                <a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    天津大学北洋园校区
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12  pricing_footer">
+                                            <button type="button" class="btn btn-primary btn-block">
+                                                <i class="fa fa-building-o"> </i> 查看详情
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+{{--                            <div class="col-md-4 col-sm-4  profile_details">--}}
+{{--                                <div class="well profile_view">--}}
+{{--                                    <div class="col-sm-12">--}}
+{{--                                        <h4 class="brief"><i>Digital Strategist</i></h4>--}}
+{{--                                        <div class="left col-sm-7">--}}
+{{--                                            <h2>Nicole Pearson</h2>--}}
+{{--                                            <p><strong>About: </strong> Web Designer / UI. </p>--}}
+{{--                                            <ul class="list-unstyled">--}}
+{{--                                                <li><i class="fa fa-building"></i> Address: </li>--}}
+{{--                                                <li><i class="fa fa-phone"></i> Phone #: </li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
 {{--                                        <div class="right col-sm-5 text-center">--}}
 {{--                                            <img src="images/user.png" alt="" class="img-circle img-fluid">--}}
 {{--                                        </div>--}}
-                                    </div>
-                                    <div class=" bottom text-center">
-                                        <div class=" col-sm-6 emphasis">
-                                            <p class="ratings">
-                                                <a>4.0</a>
-                                                <a href="#"><span class="fa fa-star"></span></a>
-                                                <a href="#"><span class="fa fa-star"></span></a>
-                                                <a href="#"><span class="fa fa-star"></span></a>
-                                                <a href="#"><span class="fa fa-star"></span></a>
-                                                <a href="#"><span class="fa fa-star-o"></span></a>
-                                            </p>
-                                        </div>
-                                        <div class="col-sm-6 emphasis">
-                                            <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
-                                                </i> <i class="fa fa-comments-o"></i> </button>
-                                            <button type="button" class="btn btn-primary btn-sm">
-                                                <i class="fa-building-o"> </i> 查看详情
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 col-sm-4  profile_details">
-                                <div class="well profile_view">
-                                    <div class="col-sm-12">
-                                        <h4 class="brief"><i>Digital Strategist</i></h4>
-                                        <div class="left col-sm-7">
-                                            <h2>Nicole Pearson</h2>
-                                            <p><strong>About: </strong> Web Designer / UI. </p>
-                                            <ul class="list-unstyled">
-                                                <li><i class="fa fa-building"></i> Address: </li>
-                                                <li><i class="fa fa-phone"></i> Phone #: </li>
-                                            </ul>
-                                        </div>
-                                        <div class="right col-sm-5 text-center">
-                                            <img src="images/user.png" alt="" class="img-circle img-fluid">
-                                        </div>
-                                    </div>
-                                    <div class=" bottom text-center">
-                                        <div class=" col-sm-6 emphasis">
-                                            <p class="ratings">
-                                                <a>4.0</a>
-                                                <a href="#"><span class="fa fa-star"></span></a>
-                                                <a href="#"><span class="fa fa-star"></span></a>
-                                                <a href="#"><span class="fa fa-star"></span></a>
-                                                <a href="#"><span class="fa fa-star"></span></a>
-                                                <a href="#"><span class="fa fa-star-o"></span></a>
-                                            </p>
-                                        </div>
-                                        <div class=" col-sm-6 emphasis">
-                                            <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
-                                                </i> <i class="fa fa-comments-o"></i> </button>
-                                            <button type="button" class="btn btn-primary btn-sm">
-                                                <i class="fa fa-user"> </i> View Profile
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+{{--                                    </div>--}}
+{{--                                    <div class=" bottom text-center">--}}
+{{--                                        <div class=" col-sm-6 emphasis">--}}
+{{--                                            <p class="ratings">--}}
+{{--                                                <a>4.0</a>--}}
+{{--                                                <a href="#"><span class="fa fa-star"></span></a>--}}
+{{--                                                <a href="#"><span class="fa fa-star"></span></a>--}}
+{{--                                                <a href="#"><span class="fa fa-star"></span></a>--}}
+{{--                                                <a href="#"><span class="fa fa-star"></span></a>--}}
+{{--                                                <a href="#"><span class="fa fa-star-o"></span></a>--}}
+{{--                                            </p>--}}
+{{--                                        </div>--}}
+{{--                                        <div class=" col-sm-6 emphasis">--}}
+{{--                                            <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">--}}
+{{--                                                </i> <i class="fa fa-comments-o"></i> </button>--}}
+{{--                                            <button type="button" class="btn btn-primary btn-sm">--}}
+{{--                                                <i class="fa fa-user"> </i> View Profile--}}
+{{--                                            </button>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
                         </div>
                     </div>

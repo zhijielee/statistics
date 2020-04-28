@@ -153,38 +153,100 @@ class IndexController extends Controller {
     }
 
     public static function toExcel(Request $request, Excel $excel) {
-        if(is_null($request->input("name"))) {
-            Func::alert("数据量过大，请选择导出");
+        $is_large = 1;
+        $dateTime = $request->input("date_time");
+        // 时间格式转换
+        if(is_null($dateTime)) {
+            $start = "'".DB::select("select CREATE_TIME from t_qrcode where CREATE_TIME is not NULL order by SID limit 1")[0]->CREATE_TIME."'";
+            $end = "'".DB::select("select CREATE_TIME from t_qrcode where CREATE_TIME is not NULL order by SID desc limit 1")[0]->CREATE_TIME."'";
+            $start_array = explode(" ", substr($start,1, strlen($start) - 2));
+            $date = explode("-", $start_array[0]);
+            $time = explode(":", $start_array[1]);
+            $dateTime = $date[2] . "/" . $date[1] . "/" . $date[0] . " " . ($time[0] > '12' ? intval($time[0]) - 12 : $time[0]) .":" . $time[1] ." " . ($time[0] > '12' ? "PM":"AM") ." - ";
+            $end_array = explode(" ", $start);
+            $date = explode("-", $end_array[0]);
+            $time = explode(":", $end_array[1]);
+            $dateTime = $dateTime . $date[2] . "/" . $date[1] . "/" . $date[0] . " " . ($time[0] > '12' ? intval($time[0]) - 12 : $time[0]) .":" . $time[1] ." " . ($time[0] > '12' ? "PM":"AM");
+        } else {
+            $is_large = 0;
+            $start_init = explode(" - ", $dateTime)[0];
+            $end_init = explode(" - ", $dateTime)[1];
+            $start_array = explode(" ", $start_init);
+            $end_array = explode(" ", $end_init);
+            $date = explode("/", $start_array[0]);
+            $time = explode(":", $start_array[1]);
+            $start = "'" . $date[2] . "-" . $date[0] . "-" . $date[1] . " " . ($start_array[2] == "PM" ? intval($time[0]) + 12 : $time[0]) . ":" . $time[1] .":00'";
+            $date = explode("/", $end_array[0]);
+            $time = explode(":", $end_array[1]);
+            $end = "'" . $date[2] . "-" . $date[0] . "-" . $date[1] . " " . ($end_array[2] == "PM" ? intval($time[0]) + 12 : $time[0]) . ":" . $time[1] .":59'";
+        }
+
+        if(is_null($request->input("user_name"))) {
+            $user_name = null;
+            $user_sql = "";
+        } else {
+            $is_large = 0;
+            $user_name = $request->input("user_name");
+            $user_sql = " and NAME = '" .$user_name . "'";
+        }
+
+        if(is_null($request->input("group_name"))) {
+            $group_name = null;
+            $group_sql = "";
+        } else {
+            $is_large = 0;
+            $group_name = $request->input("group_name");
+            $group_sql = " and TITLE = '" .$group_name . "'";
+        }
+
+        if(is_null($request->input("build_name"))) {
+            $build_name = null;
+            $build_sql = "";
+        } else {
+            $is_large = 0;
+            $build_name = $request->input("build_name");
+            $build_sql = " and BUILDING = '" .$build_name . "'";
+        }
+
+        if($is_large == 1) {
+            Func::alert("数据过大，请做导出数据选择");
             Func::goBack();
             exit();
         }
-        $name = $request->input("name");
-        $result = DB::select("SELECT G.TITLE AS group_name, T2.name as name, T2.name as name, T2.goin, T2.time as time ".
-            "FROM (select GU.GROUP_SID, T1.name as name, T1.goin as goin, T1.time as time ".
-            "from (SELECT U.SID AS sid, NAME AS name, Q.GOIN AS goin, Q.CREATE_TIME as time ".
-            "FROM t_qrcode Q INNER JOIN t_td_user U where U.NAME = ? and Q.USID = U.SID order by Q.SID) as T1 ".
-            "inner join t_td_group_user GU on GU.U_SID = T1.sid) AS T2 ".
-            "inner join t_td_group AS G ON G.SID = T2.GROUP_SID",[$name]);
+
+        $result = DB::select("select T.user_id as user_id, T.user_name as user_name, T.bulid_name as build_name, T.goin as goin, T.time as time, T.body as body, TITLE as group_name from t_td_group as G inner join ".
+            "(select U.SID as user_id, U.NAME as user_name, Q.BUILDING as bulid_name, U.CURRENT_GROUP_SID as group_id, Q.GOIN as goin, Q.BODY as body, Q.CREATE_TIME as time from t_qrcode Q inner join ".
+            "t_td_user U on Q.USID = U.SID ".
+            "where Q.CREATE_TIME between " . $start . " and ".$end . $user_sql . $build_name." ) as T ".
+            "on T.group_id = G.SID where 1 = 1".$group_name);
+
+//        dd($result);
 
         $title = [
-            0 => '姓名',
-            1 => '时间',
-            2 => '进出类型',
-            3 => '单位'
+            0 => '工号/学号',
+            1 => '姓名',
+            2 => '时间',
+            3 => '进出类型',
+            4 => '体温',
+            5 => '单位',
+            6 => '楼宇'
         ];
         $export = null;
         foreach ($result as $key => $val) {
-            $export[$key][0] = $val->name;
-            $export[$key][1] = $val->time;
-            $export[$key][2] = $val->goin;
-            $export[$key][3] = $val->group_name;
+            $export[$key][0] = $val->user_id;
+            $export[$key][1] = $val->user_name;
+            $export[$key][2] = $val->time;
+            $export[$key][3] = $val->goin;
+            $export[$key][4] = $val->body;
+            $export[$key][5] = $val->group_name;
+            $export[$key][6] = $val->build_name;
         }
         $sell = array_merge($title, $export);
-        $excel->create($name.'的活动记录',function($excel) use ($sell){
+        $excel->create('数据',function($excel) use ($sell){
             $excel->sheet('score', function($sheet) use ($sell){
                 $sheet->rows($sell);
             });
-        })->export('xls');
+        })->export('csv');
         Func::goBack();
     }
 

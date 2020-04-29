@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>TJU疫情防控数据平台</title>
+    <title>TJU-疫情防控数据平台</title>
 
     <!-- Bootstrap -->
     <link href="/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

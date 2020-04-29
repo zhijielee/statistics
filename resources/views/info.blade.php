@@ -61,7 +61,7 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link" href="#">CSV</a>
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
                             </ul>
                             <div class="clearfix"></div>
@@ -133,6 +133,12 @@
             </div>
                  <div class="row">
                                     <div class="col-sm-12">
+                                        <a class="btn btn-default buttons-csv buttons-html5 btn-sm" tabindex="0"
+                                       aria-controls="datatable-buttons" href="{{url($excel_url)}}">
+                                        <span>
+                                            CSV
+                                        </span>
+                                    </a>
                                         <div class="card-box table-responsive">
                                             <table id="datatable" class="table table-striped table-bordered"
                                                    style="width:100%">

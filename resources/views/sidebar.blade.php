@@ -27,10 +27,13 @@
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
                 <ul class="nav side-menu">
-                    <li><a href="/"><i class="fa fa-home"></i>实时动态</a>
-
+                    <li><a><i class="fa fa-home"></i> 实时动态<span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/">食堂场馆</a></li>
+                            <li><a href="/dashboard_gate">校门情况</a></li>
+                           
+                        </ul>
                     </li>
-
 
                     <li><a><i class="fa fa-bar-chart-o"></i> 数据检索<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">

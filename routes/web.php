@@ -28,3 +28,6 @@ Route::get("excel", "IndexController@toExcel");
 // 多条件查询，数据 table 展示
 Route::get("/info2", "IndexController@info2");
 
+// 多条件查询，数据 table 展示
+Route::get("/dashboard_gate", "IndexController@dashboard_gate");
+

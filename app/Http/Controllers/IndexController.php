@@ -17,7 +17,7 @@ class IndexController extends Controller {
     public static function index(Request $request) {
         return view("dashboard");
     }
-    
+
 //    public static function index(Request $request) {
 //
 //        //获取当前的页数
@@ -80,7 +80,7 @@ class IndexController extends Controller {
             $date = explode("-", $start_array[0]);
             $time = explode(":", $start_array[1]);
             $dateTime = $date[2] . "/" . $date[1] . "/" . $date[0] . " " . ($time[0] > '12' ? intval($time[0]) - 12 : $time[0]) .":" . $time[1] ." " . ($time[0] > '12' ? "PM":"AM") ." - ";
-            $end_array = explode(" ", $start);
+            $end_array = explode(" ", substr($end,1, strlen($end) - 2));
             $date = explode("-", $end_array[0]);
             $time = explode(":", $end_array[1]);
             $dateTime = $dateTime . $date[2] . "/" . $date[1] . "/" . $date[0] . " " . ($time[0] > '12' ? intval($time[0]) - 12 : $time[0]) .":" . $time[1] ." " . ($time[0] > '12' ? "PM":"AM");
@@ -91,10 +91,10 @@ class IndexController extends Controller {
             $end_array = explode(" ", $end_init);
             $date = explode("/", $start_array[0]);
             $time = explode(":", $start_array[1]);
-            $start = "'" . $date[2] . "-" . $date[0] . "-" . $date[1] . " " . ($start_array[2] == "PM" ? intval($time[0]) + 12 : $time[0]) . ":" . $time[1] .":00'";
+            $start = "'" . $date[2] . "-" . $date[1] . "-" . $date[0] . " " . ($start_array[2] == "PM" ? intval($time[0]) + 12 : $time[0]) . ":" . $time[1] .":00'";
             $date = explode("/", $end_array[0]);
             $time = explode(":", $end_array[1]);
-            $end = "'" . $date[2] . "-" . $date[0] . "-" . $date[1] . " " . ($end_array[2] == "PM" ? intval($time[0]) + 12 : $time[0]) . ":" . $time[1] .":59'";
+            $end = "'" . $date[2] . "-" . $date[1] . "-" . $date[0] . " " . ($end_array[2] == "PM" ? intval($time[0]) + 12 : $time[0]) . ":" . $time[1] .":59'";
         }
 
         if(is_null($request->input("user_name"))) {

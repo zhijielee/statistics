@@ -32,11 +32,11 @@
 <div class="container body">
     <div class="main_container">
 
-        @include("sidebar")
+    @include("sidebar")
 
-        @include("top_nav")
+    @include("top_nav")
 
-        <!-- page content -->
+    <!-- page content -->
         <div class="right_col" role="main">
             <div class="">
                 <div class="page-title">
@@ -54,82 +54,82 @@
                             <div class="x_title">
                                 <h2>数据详情 <small>Users</small></h2>
                                 <ul class="nav navbar-right panel_toolbox">
-{{--                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="dropdown">--}}
-{{--                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">导出类型</a>--}}
-{{--                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
-{{--                                            <a class="dropdown-item" href="#">只导出本页</a>--}}
-{{--                                            <a class="dropdown-item" href="#">导出所有</a>--}}
-{{--                                        </div>--}}
-{{--                                    </li>--}}
-                                    <a class="btn btn-default buttons-csv buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons" href="{{url($excel_url)}}">
+
+                                    <a class="btn btn-default buttons-csv buttons-html5 btn-sm" tabindex="0"
+                                       aria-controls="datatable-buttons" href="{{url($excel_url)}}">
                                         <span>
                                             CSV
                                         </span>
                                     </a>
-{{--                                    <li><a class="close-link"><i class="fa fa-close"></i></a>--}}
-{{--                                    </li>--}}
+                                    {{--                                    <li><a class="close-link"><i class="fa fa-close"></i></a>--}}
+                                    {{--                                    </li>--}}
                                 </ul>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <form action="{{url("/info?page=".$current)}}" method = "GET">
+                                <form action="{{url("/info?page=".$current)}}" method="GET">
                                     <div class="row">
-                                            <div class="col-sm-5">
-                                                &nbsp;&nbsp;&nbsp;Date and Time
-                                                <form class="col-sm-12">
-                                                    <fieldset>
-                                                        <div class="control-group">
-                                                            <div class="controls">
-                                                                <div class="input-prepend input-group">
-                                                                    <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                                                                    <input type="text" name="date_time" id="reservation-time" class="form-control" value={{$param["date_time"]}} />
-                                                                </div>
+                                        <div class="col-sm-5">
+                                            &nbsp;&nbsp;&nbsp;Date and Time
+                                            <form class="col-sm-12">
+                                                <fieldset>
+                                                    <div class="control-group">
+                                                        <div class="controls">
+                                                            <div class="input-prepend input-group">
+                                                                <span class="add-on input-group-addon"><i
+                                                                        class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                                                                <input type="text" name="date_time"
+                                                                       id="reservation-time" class="form-control"
+                                                                       value={{$param["date_time"]}} />
                                                             </div>
                                                         </div>
-                                                    </fieldset>
-                                                </form>
+                                                    </div>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div id="datatable_filter" class="dataTables_filter">
+                                                <label>姓名:
+                                                    <input name="user_name" type="search" class="form-control input-sm"
+                                                           placeholder={{is_null($param['user_name'])?"姓名":$param['user_name']}} aria-controls="datatable">
+                                                </label>
                                             </div>
-                                            <div class="col-sm-2">
-                                                <div id="datatable_filter" class="dataTables_filter">
-                                                    <label>姓名:
-                                                        <input name="user_name" type="search" class="form-control input-sm" placeholder={{is_null($param['user_name'])?"姓名":$param['user_name']}} aria-controls="datatable">
-                                                    </label>
-                                                </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div id="datatable_filter" class="dataTables_filter">
+                                                <label>单位名:
+                                                    <input name="group_name" type="search" class="form-control input-sm"
+                                                           placeholder={{is_null($param['group_name'])?"单位名称":$param['group_name']}} aria-controls="datatable">
+                                                </label>
                                             </div>
-                                            <div class="col-sm-2">
-                                                <div id="datatable_filter" class="dataTables_filter">
-                                                    <label>单位名:
-                                                        <input name="group_name" type="search" class="form-control input-sm" placeholder={{is_null($param['group_name'])?"单位名称":$param['group_name']}} aria-controls="datatable">
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <div id="datatable_filter" class="dataTables_filter">
-                                                    <label>建筑名称:
-                                                        <input name="build_name" type="search" class="form-control input-sm" placeholder={{is_null($param['build_name'])?"建筑名称":$param['build_name']}} aria-controls="datatable">
-                                                    </label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div id="datatable_filter" class="dataTables_filter">
+                                                <label>建筑名称:
+                                                    <input name="build_name" type="search" class="form-control input-sm"
+                                                           placeholder={{is_null($param['build_name'])?"建筑名称":$param['build_name']}} aria-controls="datatable">
+                                                </label>
 
-                                                </div>
                                             </div>
-                                            <div class="col-sm-1">
-                                                <div id="datatable_filter" class="dataTables_filter">
-                                                    <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <span class="input-group-btn">
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <div id="datatable_filter" class="dataTables_filter">
+                                                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <span class="input-group-btn">
                                                     <button class="btn btn-info" type="submit">
                                                         <i class="glyphicon glyphicon-search">
                                                         </i></button>
                                                 </span>
-                                                    </label>
-                                                </div>
+                                                </label>
                                             </div>
+                                        </div>
                                     </div>
                                 </form>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="card-box table-responsive">
-                                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                            <table id="datatable" class="table table-striped table-bordered"
+                                                   style="width:100%">
                                                 <thead>
                                                 <tr>
                                                     <th>工号/学号</th>
@@ -173,8 +173,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-5">
-                                        <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">
-                                            Showing {{($current - 1) * 10 + 1}} to {{($current - 1) * 10 + 10}} of {{$total_num}} entries
+                                        <div class="dataTables_info" id="datatable_info" role="status"
+                                             aria-live="polite">
+                                            Showing {{($current - 1) * 10 + 1}} to {{($current - 1) * 10 + 10}}
+                                            of {{$total_num}} entries
                                         </div>
                                     </div>
                                     @include("pagniation")
@@ -214,38 +216,12 @@
 <script src="/gentelella/build/js/custom.min.js"></script>
 
 <!-- Initialize datetimepicker -->
-{{--<script  type="text/javascript">--}}
-{{--    $(function () {--}}
-{{--        $('#myDatepicker').datetimepicker();--}}
-{{--    });--}}
+<script type="text/javascript">
+    $(function () {
+        $('#myDatepicker').datetimepicker();
+    });
 
-{{--    $('#myDatepicker2').datetimepicker({--}}
-{{--        format: 'DD.MM.YYYY'--}}
-{{--    });--}}
-
-{{--    $('#myDatepicker3').datetimepicker({--}}
-{{--        format: 'hh:mm A'--}}
-{{--    });--}}
-
-{{--    $('#myDatepicker4').datetimepicker({--}}
-{{--        ignoreReadonly: true,--}}
-{{--        allowInputToggle: true--}}
-{{--    });--}}
-
-{{--    $('#datetimepicker6').datetimepicker();--}}
-
-{{--    $('#datetimepicker7').datetimepicker({--}}
-{{--        useCurrent: false--}}
-{{--    });--}}
-
-{{--    $("#datetimepicker6").on("dp.change", function(e) {--}}
-{{--        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);--}}
-{{--    });--}}
-
-{{--    $("#datetimepicker7").on("dp.change", function(e) {--}}
-{{--        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);--}}
-{{--    });--}}
-{{--</script>--}}
+</script>
 </body>
 </html>
 

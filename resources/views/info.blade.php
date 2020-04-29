@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>TJU-疫情防控数据中心</title>
+
+    <!-- Bootstrap -->
+    <link href="/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/gentelella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/gentelella/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="/gentelella/build/css/custom.min.css" rel="stylesheet">
+    <style type="text/css">
+        .input-group-addon {
+            padding: 11px 11px;
+    </style>
+    }
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+    @include("sidebar")
+
+    <!-- top navigation -->
+    @include("top_nav")
+    <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>流动详情</h3>
+                </div>
+
+                <div class="title_right">
+                    <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12  ">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link" href="#">CSV</a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <!-- 查询栏 -->
+                            <div class="row">
+
+                                <div class="col-sm-2">
+                                    <label>人员ID：</label>
+                                    <div class="form-group">
+                                        <input type="text" id="" class="form-control" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>地点：</label>
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            <option>全部</option>
+                                            <option>进</option>
+                                            <option>出</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <label>进出：</label>
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            <option>全部</option>
+                                            <option>进</option>
+                                            <option>出</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label>人员ID：</label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>时间：</label>
+                                    <div class="form-group">
+                                        <div class="input-prepend input-group">
+                                            <span class="add-on input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input type="text" name="date_time" id="reservation-time"
+                                                   class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <label>&nbsp;</label>
+                                    <div class="form-group">
+                                        <button class="btn btn-info" type="submit">
+                                            <i class="glyphicon glyphicon-search">
+                                            </i></button>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /page content -->
+
+        <!-- footer content -->
+    @include("footer")
+    <!-- /footer content -->
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="/gentelella/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/gentelella/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FastClick -->
+<script src="/gentelella/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="/gentelella/vendors/nprogress/nprogress.js"></script>
+<!-- bootstrap-datetimepicker -->
+<script src="/gentelella/vendors/moment/min/moment.min.js"></script>
+<script src="/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="/gentelella/build/js/custom.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('input[name="date_time"]').daterangepicker({
+            timePicker: true,
+            timePicker24Hour: true,
+            startDate: moment().startOf('hour'),
+            endDate: moment().startOf('hour').add(32, 'hour'),
+            locale: {
+                format: 'M/DD hh:mm'
+            }
+        });
+
+        /* //change the selected date range of that picker
+       $('#daterange').data('daterangepicker').setStartDate('03/01/2014');
+       $('#daterange').data('daterangepicker').setEndDate('03/31/2014');*/
+    });
+</script>
+</body>
+</html>

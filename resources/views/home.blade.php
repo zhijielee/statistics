@@ -24,7 +24,7 @@
 {{--    <link href="/gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">--}}
 {{--    <link href="/gentelella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">--}}
 
-    <!-- Custom Theme Style -->
+<!-- Custom Theme Style -->
     <link href="/gentelella/build/css/custom.min.css" rel="stylesheet">
 </head>
 
@@ -32,11 +32,11 @@
 <div class="container body">
     <div class="main_container">
 
-        @include("sidebar")
-        <!-- top navigation -->
+    @include("sidebar")
+    <!-- top navigation -->
 
-        @include("header")
-        <!-- /top navigation -->
+    @include("header")
+    <!-- /top navigation -->
 
         <!-- page content -->
 
@@ -46,8 +46,8 @@
             @yield("content")
         </div>
 
-{{--        @yield('content')--}}
-        <!-- footer content -->
+    {{--        @yield('content')--}}
+    <!-- footer content -->
         <footer>
             <div class="pull-right">
                 Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>

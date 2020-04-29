@@ -17,6 +17,9 @@ class IndexController extends Controller {
     public static function index(Request $request) {
         return view("dashboard");
     }
+     public static function info(Request $request) {
+        return view("info");
+    }
 //    public static function index(Request $request) {
 //
 //        //获取当前的页数
@@ -66,7 +69,7 @@ class IndexController extends Controller {
 //
 //    }
 
-    public static function info(Request $request) {
+    public static function info2(Request $request) {
 
         // 多参数处理
         $page = is_null($request->input("page")) ? 1 : $request->input("page");
@@ -141,7 +144,7 @@ class IndexController extends Controller {
             "on T.group_id = G.SID where 1 = 1".$group_name);
 
         $url = "?user_name=".$user_name."&group_name=".$group_name."&date_time=".$dateTime."&build_name=".$build_name;
-        return view("index", [
+        return view("info", [
             "param" => $param,
             "excel_url" => "/excel".$url,
             "home" => "/info".$url,

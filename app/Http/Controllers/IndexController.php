@@ -9,7 +9,6 @@ use Illuminate\Foundation\Console\PackageDiscoverCommand;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CommonController as Func;
 use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Excel as Excel;
 use PhpOffice\PhpSpreadsheet;
 
 class IndexController extends Controller {

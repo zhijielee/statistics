@@ -23,7 +23,7 @@
         .input-group-addon {
             padding: 11px 11px;
     </style>
-    }
+    
 </head>
 
 <body class="nav-md">
@@ -67,6 +67,7 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
+                            <form action="{{url("/info?page=".$current)}}" method="GET">
                             <!-- 查询栏 -->
                             <div class="row">
 
@@ -125,10 +126,57 @@
 
 
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>
             </div>
+                 <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card-box table-responsive">
+                                            <table id="datatable" class="table table-striped table-bordered"
+                                                   style="width:100%">
+                                                <thead>
+                                                <tr>
+                                                    <th>工号/学号</th>
+                                                    <th>姓名</th>
+                                                    <th>时间</th>
+                                                    <th>进出类型</th>
+                                                    <th>体温</th>
+                                                    <th>单位</th>
+                                                    <th>楼宇</th>
+                                                </tr>
+                                                </thead>
+                                               
+
+                                                <tbody>
+                                                @foreach($result as $result)
+                                                    <tr>
+                                                        <td>{{$result -> user_id}}</td>
+                                                        <td>{{$result -> user_name}}</td>
+                                                        <td>{{$result -> time}}</td>
+                                                        <td>{{$result -> goin}}</td>
+                                                        <td>{{$result -> body}}</td>
+                                                        <td>{{$result -> group_name}}</td>
+                                                        <td>{{$result -> build_name}}</td>
+                                                    </tr>
+                                                @endforeach
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="dataTables_info" id="datatable_info" role="status"
+                                             aria-live="polite">
+                                            Showing {{($current - 1) * 10 + 1}} to {{($current - 1) * 10 + 10}}
+                                            of {{$total_num}} entries
+                                        </div>
+                                    </div>
+                                    @include("pagniation")
+                                </div>
         </div>
 
         <!-- /page content -->
@@ -158,8 +206,8 @@
         $('input[name="date_time"]').daterangepicker({
             timePicker: true,
             timePicker24Hour: true,
-            startDate: moment().startOf('hour'),
-            endDate: moment().startOf('hour').add(32, 'hour'),
+          /*  startDate: moment().startOf('hour'),
+            endDate: moment().startOf('hour').add(32, 'hour'),*/
             locale: {
                 format: 'M/DD hh:mm'
             }
@@ -168,6 +216,8 @@
         /* //change the selected date range of that picker
        $('#daterange').data('daterangepicker').setStartDate('03/01/2014');
        $('#daterange').data('daterangepicker').setEndDate('03/31/2014');*/
+
+     
     });
 </script>
 </body>

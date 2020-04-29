@@ -217,9 +217,7 @@
 
 <!-- Initialize datetimepicker -->
 <script type="text/javascript">
-    $(function () {
-        $('#myDatepicker').datetimepicker();
-    });
+    
 
 </script>
 </body>

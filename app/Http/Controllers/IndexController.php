@@ -17,9 +17,7 @@ class IndexController extends Controller {
     public static function index(Request $request) {
         return view("dashboard");
     }
-     public static function info(Request $request) {
-        return view("info");
-    }
+    
 //    public static function index(Request $request) {
 //
 //        //获取当前的页数
@@ -69,7 +67,7 @@ class IndexController extends Controller {
 //
 //    }
 
-    public static function info2(Request $request) {
+    public static function info(Request $request) {
 
         // 多参数处理
         $page = is_null($request->input("page")) ? 1 : $request->input("page");

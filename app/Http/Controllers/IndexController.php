@@ -15,15 +15,49 @@ class IndexController extends Controller {
 
 
     public static function index(Request $request) {
-        return view("dashboard");
+
+        
+        return view("index");
     }
     public static function dashboard_gate(Request $request) {
         return view("dashboard_gate");
     }
+     public static function dashboard(Request $request) {
+        $type= $request->input('type');
+        
+        switch ($type) {
+            case '1':
+                $title="宿舍";
+                break;
+            case '2':
+                $title="食堂";
+                break;
+            case '3':
+                $title="场馆";
+                break;
+            case '5':
+                $title="教学楼";
+                break;
+            case '6':
+                $title="校门";
+                break;
+            case '7':
+                $title="三站一场";
+                break;
+            default:
+                $title="";
+                break;
+        }
+       
+        $res = DB::select("SELECT * FROM t_td_user_iot LEFT JOIN t_td_user ON t_td_user_iot.ACCOUNT_ID=t_td_user.UID WHERE t_td_user_iot.IOT_TYPE = :type",['type' => $type]);
+        
+        return view("dashboard",["res"=>$res,"title"=>$title]);
+    }
 
 
     public static function info(Request $request) {
-
+        $res = $request->input();
+        dump($res); 
         // 多参数处理
         $page = is_null($request->input("page")) ? 1 : $request->input("page");
         $dateTime = $request->input("date_time");

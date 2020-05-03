@@ -36,6 +36,9 @@
         .all {
             font-weight: bold !important;
         }
+        .widget_tally_box .name{
+            margin: 0px;
+        }
     </style>
 </head>
 
@@ -53,7 +56,7 @@
 
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Dashboard-食堂场馆</h3>
+                    <h3>Dashboard-{{$title}}</h3>
                 </div>
 
                 <div class="title_right">
@@ -78,28 +81,35 @@
                         </div>
                         <div class="x_content">
                             <!--                   更新下边 -->
+                            @foreach ($res as $r)
                             <div class="col-md-3  widget_tally_box">
-                                <div class="x_panel fixed_height_300">
+                                <div class="x_panel fixed_height_330">
                                     <div class="x_content">
                                         <div class="flex">
                                             <ul class="list-inline widget_profile_box">
                                                 <li>
-                                                    <a>北</a>
+                                                    @if ($r->CAMPUS === 1)
+                                                     <a>卫</a>
+                                                    @elseif ($r->CAMPUS === 2)
+                                                     <a>北</a>
+                                                    @else
+                                                    
+                                                    @endif       
                                                 </li>
                                                 <li></li>
                                                 <li></li>
                                             </ul>
                                         </div>
-                                        <h3 class="name">梅园餐厅</h3>
+                                        <div style="height: 100px;"><h3 class="name">{{$r->NAME}}</h3></div>
                                         <div class="flex">
                                             <ul class="list-inline count2">
                                                 <li>
-                                                    <h3 class="now">120</h3>
+                                                    <h3 class="now">{{$r->CAPACITY}}</h3>
                                                     <span>Now</span>
                                                 </li>
                                                 <li>
-                                                    <h3 class="all">1300</h3>
-                                                    <span>All</span>
+                                                    <h3 class="all">{{$r->MAX_CAPACITY}}</h3>
+                                                    <span>Max</span>
                                                 </li>
                                             </ul>
                                         </div>
@@ -111,177 +121,8 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-3  widget_tally_box">
-                                <div class="x_panel fixed_height_300">
-                                    <div class="x_content">
-                                        <div class="flex">
-                                            <ul class="list-inline widget_profile_box">
-                                                <li>
-                                                    <a>卫</a>
-                                                </li>
-                                                <li></li>
-                                                <li></li>
-                                            </ul>
-                                        </div>
-                                        <h3 class="name">梅园餐厅</h3>
-                                        <div class="flex">
-                                            <ul class="list-inline count2">
-                                                <li>
-                                                    <h3 class="now">120</h3>
-                                                    <span>Now</span>
-                                                </li>
-                                                <li>
-                                                    <h3 class="all">1300</h3>
-                                                    <span>All</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="flex">
-                                            <button type="button" class="btn btn-round btn-info" style="width: 100%"><i
-                                                    class="fa fa-building-o"> </i> 查看详情
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3  widget_tally_box">
-                                <div class="x_panel fixed_height_300">
-                                    <div class="x_content">
-                                        <div class="flex">
-                                            <ul class="list-inline widget_profile_box">
-                                                <li>
-                                                    <a>卫</a>
-                                                </li>
-                                                <li></li>
-                                                <li></li>
-                                            </ul>
-                                        </div>
-                                        <h3 class="name">梅园餐厅</h3>
-                                        <div class="flex">
-                                            <ul class="list-inline count2">
-                                                <li>
-                                                    <h3 class="now">120</h3>
-                                                    <span>Now</span>
-                                                </li>
-                                                <li>
-                                                    <h3 class="all">1300</h3>
-                                                    <span>All</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="flex">
-                                            <button type="button" class="btn btn-round btn-info" style="width: 100%"><i
-                                                    class="fa fa-building-o"> </i> 查看详情
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3  widget_tally_box">
-                                <div class="x_panel fixed_height_300">
-                                    <div class="x_content">
-                                        <div class="flex">
-                                            <ul class="list-inline widget_profile_box">
-                                                <li>
-                                                    <a>北</a>
-                                                </li>
-                                                <li></li>
-                                                <li></li>
-                                            </ul>
-                                        </div>
-                                        <h3 class="name">梅园餐厅</h3>
-                                        <div class="flex">
-                                            <ul class="list-inline count2">
-                                                <li>
-                                                    <h3 class="now">120</h3>
-                                                    <span>Now</span>
-                                                </li>
-                                                <li>
-                                                    <h3 class="all">1300</h3>
-                                                    <span>All</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="flex">
-                                            <button type="button" class="btn btn-round btn-info" style="width: 100%"><i
-                                                    class="fa fa-building-o"> </i> 查看详情
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3  widget_tally_box">
-                                <div class="x_panel fixed_height_300">
-                                    <div class="x_content">
-                                        <div class="flex">
-                                            <ul class="list-inline widget_profile_box">
-                                                <li>
-                                                    <a>北</a>
-                                                </li>
-                                                <li></li>
-                                                <li></li>
-                                            </ul>
-                                        </div>
-                                        <h3 class="name">梅园餐厅</h3>
-                                        <div class="flex">
-                                            <ul class="list-inline count2">
-                                                <li>
-                                                    <h3 class="now">120</h3>
-                                                    <span>Now</span>
-                                                </li>
-                                                <li>
-                                                    <h3 class="all">1300</h3>
-                                                    <span>All</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="flex">
-                                            <button type="button" class="btn btn-round btn-info" style="width: 100%"><i
-                                                    class="fa fa-building-o"> </i> 查看详情
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3  widget_tally_box">
-                                <div class="x_panel fixed_height_300">
-                                    <div class="x_content">
-                                        <div class="flex">
-                                            <ul class="list-inline widget_profile_box">
-                                                <li>
-                                                    <a>北</a>
-                                                </li>
-                                                <li></li>
-                                                <li></li>
-                                            </ul>
-                                        </div>
-                                        <h3 class="name">梅园餐厅</h3>
-                                        <div class="flex">
-                                            <ul class="list-inline count2">
-                                                <li>
-                                                    <h3 class="now">120</h3>
-                                                    <span>Now</span>
-                                                </li>
-                                                <li>
-                                                    <h3 class="all">1300</h3>
-                                                    <span>All</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="flex">
-                                            <button type="button" class="btn btn-round btn-info" style="width: 100%"><i
-                                                    class="fa fa-building-o"> </i> 查看详情
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            @endforeach
+                 
                         </div>
                     </div>
                 </div>

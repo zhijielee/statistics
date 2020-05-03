@@ -17,10 +17,10 @@
 
 
 // 首页随机建筑数据展示
-Route::get("/", "IndexController@index");
+Route::any("/", "IndexController@index");
 
 // 多条件查询，数据 table 展示
-Route::get("/info", "IndexController@info");
+Route::any("/info", "IndexController@info");
 
 // 搜索到的所有数据的excel 导出
 Route::get("excel", "IndexController@toExcel");
@@ -30,4 +30,6 @@ Route::get("/info2", "IndexController@info2");
 
 // 多条件查询，数据 table 展示
 Route::get("/dashboard_gate", "IndexController@dashboard_gate");
+// 多条件查询
+Route::get("/dashboard", "IndexController@dashboard");
 

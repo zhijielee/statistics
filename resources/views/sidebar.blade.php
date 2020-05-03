@@ -29,8 +29,11 @@
                 <ul class="nav side-menu">
                     <li><a><i class="fa fa-home"></i> 实时动态<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="/">食堂场馆</a></li>
-                            <li><a href="/dashboard_gate">校门情况</a></li>
+                            <li><a href="/dashboard?type=7">三站一场</a></li>
+                             <li><a href="/dashboard?type=6">校门情况</a></li>
+                            <li><a href="/dashboard?type=2">食堂情况</a></li>
+                            <li><a href="/dashboard?type=3">场馆情况</a></li>
+                           <!--  <li><a href="/dashboard_gate">校门情况</a></li> -->
                            
                         </ul>
                     </li>

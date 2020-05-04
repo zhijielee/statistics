@@ -50,12 +50,22 @@ class IndexController extends Controller {
                 $title="";
                 break;
         }
-
-        $res = DB::select("SELECT * FROM t_td_user_iot LEFT JOIN t_td_user ON t_td_user_iot.ACCOUNT_ID=t_td_user.UID WHERE t_td_user_iot.IOT_TYPE = :type",['type' => $type]);
+        if($type==2) {
+            $res = DB::select("SELECT * FROM t_td_user_iot LEFT JOIN t_td_user ON t_td_user_iot.ACCOUNT_ID=t_td_user.UID WHERE t_td_user_iot.IOT_TYPE = :type AND t_td_user_iot.ACCOUNT_ID IN ('wxue3','wxue502','wxue503','wgoubuli','bxue1','bxue5','bliuyuan','bqingzhen')",['type' => $type]);
+        }else{
+             $res = DB::select("SELECT * FROM t_td_user_iot LEFT JOIN t_td_user ON t_td_user_iot.ACCOUNT_ID=t_td_user.UID WHERE t_td_user_iot.IOT_TYPE = :type",['type' => $type]);
+        }
+        
 
         return view("dashboard",["res"=>$res,"title"=>$title]);
     }
+     public static function info(Request $request) {
 
+        /*所有位置，查物联码*/
+        $location = DB::select("SELECT t_td_user.`NAME`,t_td_user.SID,t_td_user.UID FROM t_td_user WHERE t_td_user.TYPE = :type",['type' => '5']);
+        /*dump($res);*/
+        return view("info",['location'=>$location]);
+     }
 
 
     public static function getInfoNum($start, $end, $user_sql, $location_sql, $group_sql) {
@@ -72,7 +82,7 @@ class IndexController extends Controller {
         return $total_num;
     }
 
-    public static function info(Request $request) {
+    public static function info_show(Request $request) {
         $res = $request->input();
         dump($res);
         // 多参数处理

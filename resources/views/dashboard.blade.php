@@ -108,7 +108,11 @@
                                                     <span>Now</span>
                                                 </li>
                                                 <li>
-                                                    <h3 class="all">{{$r->MAX_CAPACITY}}</h3>
+                                                    @if ($r->MAX_CAPACITY === 0)
+                                                     <h3 style="font-weight: 300;">无限制</h4>
+                                                    @else
+                                                     <h3 class="all">{{$r->MAX_CAPACITY}}</h3>
+                                                    @endif       
                                                     <span>Max</span>
                                                 </li>
                                             </ul>

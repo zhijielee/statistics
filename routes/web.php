@@ -23,7 +23,7 @@ Route::any("/", "IndexController@index");
 Route::any("/info", "IndexController@info");
 
 // 搜索到的所有数据的excel 导出
-Route::get("excel", "IndexController@toExcel");
+Route::get("/excel", "IndexController@toExcel");
 
 // 多条件查询，数据 table 展示
 Route::get("/info2", "IndexController@info2");

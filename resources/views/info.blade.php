@@ -22,6 +22,7 @@
     <style type="text/css">
         .input-group-addon {
             padding: 11px 11px;
+        }
     </style>
 
 </head>
@@ -75,25 +76,25 @@
                                 <div class="col-sm-2">
                                     <label>部门:</label>
                                     <div class="form-group">
-                                        <input type="text" name="title" id="" class="form-control" placeholder=" ">
+                                        <input type="text" name="title" id="" class="form-control" placeholder="{{$param['title']}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label>工号/学号:</label>
                                     <div class="form-group">
-                                        <input type="text" name="uid" id="" class="form-control" placeholder=" ">
+                                        <input type="text" name="uid" id="" class="form-control" placeholder="{{$param['uid']}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label>姓名:</label>
                                     <div class="form-group">
-                                        <input type="text" name="name" id="" class="form-control" placeholder=" ">
+                                        <input type="text" name="name" id="" class="form-control" placeholder="{{$param['name']}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label>联系方式:</label>
                                     <div class="form-group">
-                                        <input type="text" name="phone" id="" class="form-control" placeholder=" ">
+                                        <input type="text" name="phone" id="" class="form-control" placeholder="{{$param['phone']}} ">
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +104,7 @@
                                     <div class="form-group">
                                         <select class="form-control" name="location">
                                             <option value="">全部</option>
-                                            
+
                                         </select>
                                     </div>
                                 </div>
@@ -111,9 +112,9 @@
                                     <label>进出：</label>
                                     <div class="form-group">
                                         <select class="form-control" name="goin">
-                                            <option>全部</option>
-                                            <option>进</option>
-                                            <option>出</option>
+                                            <option value="0">全部</option>
+                                            <option value="1">进</option>
+                                            <option value="2">出</option>
                                         </select>
                                     </div>
                                 </div>
@@ -127,23 +128,20 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-1">
                                     <label>&nbsp;</label>
                                     <div class="form-group">
                                         <button class="btn btn-info" type="submit">
                                             <i class="glyphicon glyphicon-search">
                                             </i></button>
-
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
                                     <label>&nbsp;</label>
                                     <div class="form-group">
-                                        <button class="btn btn-info" >
+                                        <a href="{{url($excel_url)}}"><button type="button" class="btn btn-info">
                                             <i class="glyphicon glyphicon-download-alt">
-                                            </i></button>
-
+                                            </i></button></a>
                                     </div>
                                 </div>
                             </div>
@@ -153,14 +151,14 @@
                 </div>
             </div>
                  <div class="row">
-                                    <div class="col-sm-12">
-                                        <a class="btn btn-default buttons-csv buttons-html5 btn-sm" tabindex="0"
-                                       aria-controls="datatable-buttons" href="{{url($excel_url)}}">
-                                        <span>
-                                            CSV
-                                        </span>
-                                    </a>
-                                        <div class="card-box table-responsive">
+                     <div class="col-sm-12">
+{{--                         <a class="btn btn-default buttons-csv buttons-html5 btn-sm" tabindex="0"--}}
+{{--                                       aria-controls="datatable-buttons" href="{{url($excel_url)}}">--}}
+{{--                                        <span>--}}
+{{--                                            CSV--}}
+{{--                                        </span>--}}
+{{--                                    </a>--}}
+                         <div class="card-box table-responsive">
                                             <table id="datatable" class="table table-striped table-bordered"
                                                    style="width:100%">
                                                 <thead>
@@ -171,39 +169,45 @@
                                                     <th>进出类型</th>
                                                     <th>体温</th>
                                                     <th>单位</th>
-                                                    <th>楼宇</th>
+                                                    <th>联系方式</th>
+                                                    <th>地点</th>
                                                 </tr>
                                                 </thead>
-
-
-                                            <!--     <tbody>
-                                                @foreach($result as $result)
+                                                <tbody>
+                                                    @foreach($result as $result)
                                                     <tr>
-                                                        <td>{{$result -> user_id}}</td>
-                                                        <td>{{$result -> user_name}}</td>
+                                                        <td>{{$result -> uid}}</td>
+                                                        <td>{{$result -> name}}</td>
                                                         <td>{{$result -> time}}</td>
-                                                        <td>{{$result -> goin}}</td>
+                                                        @if($result -> goin == 1)
+                                                            <td>进</td>
+                                                        @elseif($result -> goin == 2)
+                                                            <td>出</td>
+                                                        @else
+                                                            <td>{{$result -> goin}}</td>
+                                                        @endif
                                                         <td>{{$result -> body}}</td>
-                                                        <td>{{$result -> group_name}}</td>
-                                                        <td>{{$result -> build_name}}</td>
+                                                        <td>{{$result -> title}}</td>
+                                                        <td>{{$result -> phone}}</td>
+                                                        <td>{{$result -> location}}</td>
                                                     </tr>
                                                 @endforeach
 
-                                                </tbody> -->
+                                                </tbody>
                                             </table>
                                         </div>
-                                    </div>
-                                </div>
-                             <!--    <div class="row">
-                                    <div class="col-sm-5">
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-sm-5">
                                         <div class="dataTables_info" id="datatable_info" role="status"
                                              aria-live="polite">
                                             Showing {{($current - 1) * 10 + 1}} to {{($current - 1) * 10 + 10}}
                                             of {{$total_num}} entries
                                         </div>
                                     </div>
-                                    @include("pagniation")
-                                </div> -->
+                     @include("pagniation")
+                 </div>
         </div>
 
         <!-- /page content -->
@@ -242,7 +246,7 @@
 
        //  /* //change the selected date range of that picker
        // $('#daterange').data('daterangepicker').setStartDate('03/01/2014');
-       // $('#daterange').data('daterangepicker').setEndDate('03/31/2014');*/
+       // $('#daterange').data('daterangepicker').setEndDate('03/31/2014');
 
 
     });

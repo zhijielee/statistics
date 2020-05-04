@@ -67,6 +67,16 @@ class IndexController extends Controller {
 //
 //    }
 
+
+    public static function getInfoNum($start, $end, $user_sql, $location_sql, $group_sql) {
+        $total_num = DB::select("select count(SID) as num from t_td_group as G inner join ".
+            "(select U.CURRENT_GROUP_SID as group_id from t_qrcode Q inner join ".
+            "t_td_user U on Q.USID = U.SID ".
+            "where Q.CREATE_TIME between " . $start . " and ".$end . $user_sql . $location_sql.") as T ".
+            "on T.group_id = G.SID where 1 = 1".$group_sql)[0]->num;
+
+        return $total_num;
+    }
     public static function info(Request $request) {
 
         // 多参数处理
@@ -129,23 +139,27 @@ class IndexController extends Controller {
             "build_name" => $build_name
         ];
 
-        $total_num = DB::select("select count(SID) as num from t_td_group as G inner join ".
-                        "(select U.CURRENT_GROUP_SID as group_id from t_qrcode Q inner join ".
-                        "t_td_user U on Q.USID = U.SID ".
-                        "where Q.CREATE_TIME between " . $start . " and ".$end . $user_sql . $build_name.") as T ".
-                        "on T.group_id = G.SID where 1 = 1".$group_name)[0]->num;
-
+//        $total_num = DB::select("select count(SID) as num from t_td_group as G inner join ".
+//                        "(select U.CURRENT_GROUP_SID as group_id from t_qrcode Q inner join ".
+//                        "t_td_user U on Q.USID = U.SID ".
+//                        "where Q.CREATE_TIME between " . $start . " and ".$end . $user_sql . $build_name.") as T ".
+//                        "on T.group_id = G.SID where 1 = 1".$group_name)[0]->num;
+        if($page == 1) {
+            $total_num = self::getInfoNum($start, $end, $user_sql, $build_sql, $group_sql);
+        } else {
+            $total_num = $request->input("total_num");
+        }
         $result = DB::select("select T.user_id as user_id, T.user_name as user_name, T.bulid_name as build_name, T.goin as goin, T.time as time, T.body as body, TITLE as group_name from t_td_group as G inner join ".
             "(select U.SID as user_id, U.NAME as user_name, Q.BUILDING as bulid_name, U.CURRENT_GROUP_SID as group_id, Q.GOIN as goin, Q.BODY as body, Q.CREATE_TIME as time from t_qrcode Q inner join ".
             "t_td_user U on Q.USID = U.SID ".
-            "where Q.CREATE_TIME between " . $start . " and ".$end . $user_sql . $build_name." order by Q.SID desc limit ".($page - 1) * 10 .", 10) as T ".
-            "on T.group_id = G.SID where 1 = 1".$group_name);
+            "where Q.CREATE_TIME between " . $start . " and ".$end . $user_sql . $build_sql." order by Q.SID desc limit ".($page - 1) * 10 .", 10) as T ".
+            "on T.group_id = G.SID where 1 = 1".$group_sql);
 
-        $url = "?user_name=".$user_name."&group_name=".$group_name."&date_time=".$dateTime."&build_name=".$build_name;
+        $url = "user_name=".$user_name."&group_name=".$group_name."&date_time=".$dateTime."&build_name=".$build_name;
         return view("info", [
             "param" => $param,
-            "excel_url" => "/excel".$url,
-            "home" => "/info".$url,
+            "excel_url" => "/excel?".$url,
+            "home" => "/info?total_num=".$total_num."&".$url,
             "current" => $page,
             "total_num" => $total_num,
             "total" => intval(($total_num + 9) / 10),

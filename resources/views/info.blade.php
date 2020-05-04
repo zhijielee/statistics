@@ -23,7 +23,7 @@
         .input-group-addon {
             padding: 11px 11px;
     </style>
-    
+
 </head>
 
 <body class="nav-md">
@@ -147,7 +147,7 @@
                                                     <th>楼宇</th>
                                                 </tr>
                                                 </thead>
-                                               
+
 
                                                 <tbody>
                                                 @foreach($result as $result)
@@ -213,11 +213,11 @@
             }
         });
 
-        /* //change the selected date range of that picker
-       $('#daterange').data('daterangepicker').setStartDate('03/01/2014');
-       $('#daterange').data('daterangepicker').setEndDate('03/31/2014');*/
+       //  /* //change the selected date range of that picker
+       // $('#daterange').data('daterangepicker').setStartDate('03/01/2014');
+       // $('#daterange').data('daterangepicker').setEndDate('03/31/2014');*/
 
-     
+
     });
 </script>
 </body>

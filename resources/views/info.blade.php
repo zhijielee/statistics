@@ -61,54 +61,68 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link" href="#">CSV</a>
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
                             </ul>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            <form action="{{url("/info?page=".$current)}}" method="GET">
+                            <form action="{{url('/info')}}" method="post">
+                            @csrf
                             <!-- 查询栏 -->
                             <div class="row">
 
                                 <div class="col-sm-2">
-                                    <label>人员ID：</label>
+                                    <label>部门:</label>
                                     <div class="form-group">
-                                        <input type="text" id="" class="form-control" placeholder=" ">
+                                        <input type="text" name="title" id="" class="form-control" placeholder=" ">
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
+                                    <label>工号/学号:</label>
+                                    <div class="form-group">
+                                        <input type="text" name="uid" id="" class="form-control" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label>姓名:</label>
+                                    <div class="form-group">
+                                        <input type="text" name="name" id="" class="form-control" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label>联系方式:</label>
+                                    <div class="form-group">
+                                        <input type="text" name="phone" id="" class="form-control" placeholder=" ">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
                                     <label>地点：</label>
                                     <div class="form-group">
-                                        <select class="form-control">
-                                            <option>全部</option>
-                                            <option>进</option>
-                                            <option>出</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-1">
-                                    <label>进出：</label>
-                                    <div class="form-group">
-                                        <select class="form-control">
-                                            <option>全部</option>
-                                            <option>进</option>
-                                            <option>出</option>
+                                        <select class="form-control" name="location">
+                                            <option value="">全部</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label>人员ID：</label>
+                                    <label>进出：</label>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder=" ">
+                                        <select class="form-control" name="goin">
+                                            <option>全部</option>
+                                            <option>进</option>
+                                            <option>出</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <label>时间：</label>
                                     <div class="form-group">
                                         <div class="input-prepend input-group">
                                             <span class="add-on input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="text" name="date_time" id="reservation-time"
+                                            <input type="text" name="time" id="reservation-time"
                                                    class="form-control"/>
                                         </div>
                                     </div>
@@ -123,8 +137,15 @@
 
                                     </div>
                                 </div>
+                                <div class="col-sm-1">
+                                    <label>&nbsp;</label>
+                                    <div class="form-group">
+                                        <button class="btn btn-info" >
+                                            <i class="glyphicon glyphicon-download-alt">
+                                            </i></button>
 
-
+                                    </div>
+                                </div>
                             </div>
                         </form>
                         </div>
@@ -133,6 +154,12 @@
             </div>
                  <div class="row">
                                     <div class="col-sm-12">
+                                        <a class="btn btn-default buttons-csv buttons-html5 btn-sm" tabindex="0"
+                                       aria-controls="datatable-buttons" href="{{url($excel_url)}}">
+                                        <span>
+                                            CSV
+                                        </span>
+                                    </a>
                                         <div class="card-box table-responsive">
                                             <table id="datatable" class="table table-striped table-bordered"
                                                    style="width:100%">
@@ -149,7 +176,7 @@
                                                 </thead>
 
 
-                                                <tbody>
+                                            <!--     <tbody>
                                                 @foreach($result as $result)
                                                     <tr>
                                                         <td>{{$result -> user_id}}</td>
@@ -162,12 +189,12 @@
                                                     </tr>
                                                 @endforeach
 
-                                                </tbody>
+                                                </tbody> -->
                                             </table>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                             <!--    <div class="row">
                                     <div class="col-sm-5">
                                         <div class="dataTables_info" id="datatable_info" role="status"
                                              aria-live="polite">
@@ -176,7 +203,7 @@
                                         </div>
                                     </div>
                                     @include("pagniation")
-                                </div>
+                                </div> -->
         </div>
 
         <!-- /page content -->

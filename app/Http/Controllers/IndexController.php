@@ -24,7 +24,6 @@ class IndexController extends Controller {
     }
      public static function dashboard(Request $request) {
         $type= $request->input('type');
-        
         switch ($type) {
             case '1':
                 $title="宿舍";
@@ -50,7 +49,6 @@ class IndexController extends Controller {
         }
        
         $res = DB::select("SELECT * FROM t_td_user_iot LEFT JOIN t_td_user ON t_td_user_iot.ACCOUNT_ID=t_td_user.UID WHERE t_td_user_iot.IOT_TYPE = :type",['type' => $type]);
-        
         return view("dashboard",["res"=>$res,"title"=>$title]);
     }
 

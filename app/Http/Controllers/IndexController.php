@@ -62,7 +62,24 @@ class IndexController extends Controller {
         $location = DB::select("SELECT t_td_user.`NAME`,t_td_user.SID,t_td_user.UID FROM t_td_user WHERE t_td_user.TYPE = :type",['type' => '5']);
         /*dump($res);*/
         return view("info",['location'=>$location]);
+       /* return view("info");*/
      }
+     public static function info_search(Request $request) {
+
+        $parms = $request->input();
+        $starttime=explode("-",$parms['time'])[0];
+        $endtime=explode("-",$parms['time'])[1];
+        $parms['starttime']=$starttime;
+        $parms['endtime']=$endtime;
+        return response()->json(array_filter($parms));
+     }
+      public static function info_export(Request $request) {
+
+        $parms = $request->input();
+
+        return response()->json($parms);
+     }
+
 
 
     public static function getInfoNum($start, $end, $user_sql, $location_sql, $group_sql) {

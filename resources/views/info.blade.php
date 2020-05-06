@@ -68,7 +68,7 @@
                             <div class="clearfix"></div> -->
                         </div>
                         <div class="x_content">
-                            <form action="{{url('/info')}}" method="post">
+                            <form id="form">
                             @csrf
                             <!-- 查询栏 -->
                             <div class="row">
@@ -76,32 +76,32 @@
                                 <div class="col-sm-2">
                                     <label>部门:</label>
                                     <div class="form-group">
-                                        <input type="text" name="title" id="" class="form-control" placeholder="">
+                                        <input type="text" name="title" id="title" class="form-control" placeholder="">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label>工号/学号:</label>
                                     <div class="form-group">
-                                        <input type="text" name="uid" id="" class="form-control" placeholder="">
+                                        <input type="text" name="uid" id="uid" class="form-control" placeholder="">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label>姓名:</label>
                                     <div class="form-group">
-                                        <input type="text" name="name" id="" class="form-control" placeholder="">
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label>联系方式:</label>
                                     <div class="form-group">
-                                        <input type="text" name="phone" id="" class="form-control" placeholder="">
+                                        <input type="text" name="phone" id="phone" class="form-control" placeholder="">
                                     </div>
                                 </div>
                            
                                 <div class="col-sm-3">
                                     <label>地点：</label>
                                     <div class="form-group">
-                                        <select class="form-control" name="location">
+                                        <select class="form-control" name="location" id="location">
                                             <option value="">全部</option>
                                             @foreach($location as $loc)
                                             <option value="{{$loc->SID}}">{{$loc->NAME}}</option>
@@ -114,7 +114,7 @@
                                 <div class="col-sm-2">
                                     <label>进出情况：</label>
                                     <div class="form-group">
-                                        <select class="form-control" name="goin">
+                                        <select class="form-control" name="goin" id="goin">
                                             <option value="0">全部</option>
                                             <option value="1">进</option>
                                             <option value="2">出</option>
@@ -134,7 +134,7 @@
                                 <div class="col-sm-1">
                                     <label>&nbsp;</label>
                                     <div class="form-group">
-                                        <button class="btn btn-info" type="submit">
+                                        <button class="btn btn-info" type="button" id="info_search">
                                             <i class="glyphicon glyphicon-search">
                                             </i></button>
                                     </div>
@@ -142,7 +142,7 @@
                                 <div class="col-sm-1">
                                     <label>&nbsp;</label>
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-info">
+                                        <button type="button" class="btn btn-info" id="info_export">
                                             <i class="glyphicon glyphicon-download-alt">
                                             </i></button>
                                     </div>
@@ -160,14 +160,14 @@
                                                    style="width:100%">
                                                 <thead>
                                                 <tr>
+                                                    <th>单位</th>
                                                     <th>工号/学号</th>
                                                     <th>姓名</th>
-                                                    <th>时间</th>
-                                                    <th>进出类型</th>
-                                                    <th>体温</th>
-                                                    <th>单位</th>
                                                     <th>联系方式</th>
                                                     <th>地点</th>
+                                                    <th>进出类型</th>
+                                                    <th>体温</th>
+                                                    <th>时间</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -241,8 +241,32 @@
        //  /* //change the selected date range of that picker
        // $('#daterange').data('daterangepicker').setStartDate('03/01/2014');
        // $('#daterange').data('daterangepicker').setEndDate('03/31/2014');
-
-
+       $("#info_search").click(function(){
+            var parms = $("#form").serializeArray();
+            $.ajax({
+                url:"{{url('/info_search')}}",    //请求的url地址
+                dataType:"json",   //返回格式为json
+                data:parms,    //参数值
+                type:"POST",   //请求方式
+                success:function(req){
+                   //请求成功时处理
+                    console.log(req);
+                }
+            });
+        });
+        $("#info_export").click(function(){
+            var parms = $("#form").serialize();
+            $.ajax({
+                url:"{{url('/info_export')}}",    //请求的url地址
+                dataType:"json",   //返回格式为json
+                data:parms,    //参数值
+                type:"POST",   //请求方式
+                success:function(req){
+                   //请求成功时处理
+                    console.log(req);
+                }
+            });
+        });
     });
 </script>
 </body>

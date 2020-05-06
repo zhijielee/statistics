@@ -33,3 +33,7 @@ Route::get("/dashboard_gate", "IndexController@dashboard_gate");
 // 多条件查询
 Route::get("/dashboard", "IndexController@dashboard");
 
+Route::any("/info_search", "IndexController@info_search");
+Route::any("/info_export", "IndexController@info_export");
+
+

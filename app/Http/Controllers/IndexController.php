@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 
 
 
-use Illuminate\Foundation\Console\PackageDiscoverCommand;
+//use Illuminate\Foundation\Console\PackageDiscoverCommand;
+use Faker\Factory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CommonController as Func;
 use Illuminate\Support\Facades\DB;
@@ -15,14 +16,15 @@ class IndexController extends Controller {
 
 
     public static function index(Request $request) {
-
-        
         return view("index");
     }
+
     public static function dashboard_gate(Request $request) {
         return view("dashboard_gate");
     }
-     public static function dashboard(Request $request) {
+
+
+    public static function dashboard(Request $request) {
         $type= $request->input('type');
         switch ($type) {
             case '1':
@@ -47,18 +49,42 @@ class IndexController extends Controller {
                 $title="";
                 break;
         }
-       
-        $res = DB::select("SELECT * FROM t_td_user_iot LEFT JOIN t_td_user ON t_td_user_iot.ACCOUNT_ID=t_td_user.UID WHERE t_td_user_iot.IOT_TYPE = :type",['type' => $type]);
+        if($type==2) {
+            $res = DB::select("SELECT * FROM t_td_user_iot LEFT JOIN t_td_user ON t_td_user_iot.ACCOUNT_ID=t_td_user.UID WHERE t_td_user_iot.IOT_TYPE = :type AND t_td_user_iot.ACCOUNT_ID IN ('wxue3','wxue502','wxue503','wgoubuli','bxue1','bxue5','bliuyuan','bqingzhen')",['type' => $type]);
+        }else{
+             $res = DB::select("SELECT * FROM t_td_user_iot LEFT JOIN t_td_user ON t_td_user_iot.ACCOUNT_ID=t_td_user.UID WHERE t_td_user_iot.IOT_TYPE = :type",['type' => $type]);
+        }
         return view("dashboard",["res"=>$res,"title"=>$title]);
     }
+     public static function info(Request $request) {
+
+        /*所有位置，查物联码*/
+        $location = DB::select("SELECT t_td_user.`NAME`,t_td_user.SID,t_td_user.UID FROM t_td_user WHERE t_td_user.TYPE = :type",['type' => '5']);
+        /*dump($res);*/
+        return view("info",['location'=>$location]);
+     }
 
 
-    public static function info(Request $request) {
+    public static function getInfoNum($start, $end, $user_sql, $location_sql, $group_sql) {
+        $total_num = DB::select("select count(QR.SID) as num from t_qrcode as QR join t_td_user as U on U.SID = QR.SCANNER_ID ".
+            "join t_td_user as U2 on U2.SID=QR.USID join t_td_group_user as gu on gu.U_SID = U.SID join t_td_group as G on G.SID = GU.GROUP_SID ".
+            "where QR.APP_ID = 'b2d104fbde64d2f91a3e39766c8a67da' and QR.CREATE_TIME between ".$start." and ".$end.$user_sql.$group_sql." and QR.USID in ".
+            "(select SID from t_td_user where 1 = 1 ".$location_sql.")")[0]->num;
+//        $total_num = DB::select("select count(SID) as num from t_td_group as G inner join ".
+//            "(select U.CURRENT_GROUP_SID as group_id from t_qrcode Q inner join ".
+//            "t_td_user U on Q.USID = U.SID ".
+//            "where Q.CREATE_TIME between " . $start . " and ".$end . $user_sql . $location_sql.") as T ".
+//            "on T.group_id = G.SID where 1 = 1".$group_sql)[0]->num;
+
+        return $total_num;
+    }
+
+    public static function info_show(Request $request) {
         $res = $request->input();
-        dump($res); 
+        dump($res);
         // 多参数处理
         $page = is_null($request->input("page")) ? 1 : $request->input("page");
-        $dateTime = $request->input("date_time");
+        $dateTime = $request->input("time");
         // 时间格式转换
         if(is_null($dateTime)) {
             $start = "'".DB::select("select CREATE_TIME from t_qrcode where CREATE_TIME is not NULL order by SID limit 1")[0]->CREATE_TIME."'";
@@ -84,55 +110,87 @@ class IndexController extends Controller {
             $end = "'" . $date[2] . "-" . $date[1] . "-" . $date[0] . " " . ($end_array[2] == "PM" ? intval($time[0]) + 12 : $time[0]) . ":" . $time[1] .":59'";
         }
 
-        if(is_null($request->input("user_name"))) {
-            $user_name = null;
+//        用户姓名的用户 学号/工号 联系方式 的获取
+        if(is_null($request->input("name"))) {
+            $name = null;
             $user_sql = "";
         } else {
-            $user_name = $request->input("user_name");
-            $user_sql = " and NAME = '" .$user_name . "'";
+            $name = $request->input("name");
+            $user_sql = " and U.NAME = '" .$name . "'";
         }
-
-        if(is_null($request->input("group_name"))) {
-            $group_name = null;
+        if(is_null($request->input('uid'))) {
+            $uid = null;
+        } else {
+            $uid = $res['uid'];
+            $user_sql = $user_sql . " and U.UID = " .$uid;
+        }
+        if(is_null($request->input('phone'))) {
+            $phone = null;
+        } else {
+            $phone = $res['phone'];
+            $user_sql = $user_sql. " and U.PHONE = ".$phone;
+        }
+        // 单位参数的获取 以及sql的处理  $title $group_sql
+        if(is_null($request->input("title"))) {
+            $title = null;
             $group_sql = "";
         } else {
-            $group_name = $request->input("group_name");
-            $group_sql = " and TITLE = '" .$group_name . "'";
+            $title = $request->input("title");
+            $group_sql = " and G.TITLE = '" .$title . "'";
         }
 
-        if(is_null($request->input("build_name"))) {
-            $build_name = null;
+
+        if(is_null($request->input("location"))) {
+            $location = null;
             $build_sql = "";
         } else {
-            $build_name = $request->input("build_name");
-            $build_sql = " and BUILDING = '" .$build_name . "'";
+            $location = $request->input("location");
+            $build_sql = " and NAME = '" .$location . "'";
+        }
+
+        $goin = $request->input("goin");
+        if($goin == 0) {
+            $goin_sql = "";
+        } else {
+            $goin_sql = "and QR.GOIN = ".$goin;
         }
 
         $param = [
+            "uid" => $uid,
             "page" => $page,
-            "date_time" => $dateTime,
-            "user_name" => $user_name,
-            "group_name" => $group_name,
-            "build_name" => $build_name
+            "time" => $dateTime,
+            "name" => $name,
+            "title" => $title,
+            "phone" => $phone,
+            "location" => $location,
+            "goin" => $goin
         ];
 
-        $total_num = DB::select("select count(SID) as num from t_td_group as G inner join ".
-                        "(select U.CURRENT_GROUP_SID as group_id from t_qrcode Q inner join ".
-                        "t_td_user U on Q.USID = U.SID ".
-                        "where Q.CREATE_TIME between " . $start . " and ".$end . $user_sql . $build_name.") as T ".
-                        "on T.group_id = G.SID where 1 = 1".$group_name)[0]->num;
 
-        $result = DB::select("select T.user_id as user_id, T.user_name as user_name, T.bulid_name as build_name, T.goin as goin, T.time as time, T.body as body, TITLE as group_name from t_td_group as G inner join ".
-            "(select U.SID as user_id, U.NAME as user_name, Q.BUILDING as bulid_name, U.CURRENT_GROUP_SID as group_id, Q.GOIN as goin, Q.BODY as body, Q.CREATE_TIME as time from t_qrcode Q inner join ".
-            "t_td_user U on Q.USID = U.SID ".
-            "where Q.CREATE_TIME between " . $start . " and ".$end . $user_sql . $build_name." order by Q.SID desc limit ".($page - 1) * 10 .", 10) as T ".
-            "on T.group_id = G.SID where 1 = 1".$group_name);
+        if($page == 1) {
+            $total_num = self::getInfoNum($start, $end, $user_sql, $build_sql, $group_sql);
+        } else {
+            $total_num = $request->input("total_num");
+        }
+//        dd($total_num);
+        $result = DB::select("select U.NAME as name, U.UID as uid, U.PHONE as phone, G.TITLE as title, QR.CREATE_TIME as time, QR.BODY as body, QR.GOIN as goin, U2.NAME as location ".
+            "from t_qrcode as QR join t_td_user as U on U.SID = QR.SCANNER_ID ".
+            "join t_td_user as U2 on U2.SID=QR.USID join t_td_group_user as gu on gu.U_SID = U.SID join t_td_group as G on G.SID = GU.GROUP_SID ".
+            "where QR.APP_ID = 'b2d104fbde64d2f91a3e39766c8a67da' and QR.CREATE_TIME between ".$start." and ".$end.$user_sql.$group_sql." and QR.USID in ".
+            "(select SID from t_td_user where 1 = 1 ".$build_sql.") order by QR.SID desc limit " .($page - 1) * 10 .", 10");
+//        $result = DB::select("select T.user_id as user_id, T.user_name as user_name, T.bulid_name as build_name, T.goin as goin, T.time as time, T.body as body, TITLE as group_name from t_td_group as G inner join ".
+//            "(select U.SID as user_id, U.NAME as user_name, Q.BUILDING as bulid_name, U.CURRENT_GROUP_SID as group_id, Q.GOIN as goin, Q.BODY as body, Q.CREATE_TIME as time from t_qrcode Q inner join ".
+//            "t_td_user U on Q.USID = U.SID ".
+//            "where Q.CREATE_TIME between " . $start . " and ".$end . $user_sql . $build_sql." order by Q.SID desc limit ".($page - 1) * 10 .", 10) as T ".
+//            "on T.group_id = G.SID where 1 = 1".$group_sql);
 
-        $url = "?user_name=".$user_name."&group_name=".$group_name."&date_time=".$dateTime."&build_name=".$build_name;
+//        dd($result);
+//        $result[0]->uid = 00001;
+        $url = "name=".$name."&title=".$title."&date_time=".$dateTime."&location=".$location;
         return view("info", [
             "param" => $param,
-            "excel_url" => "/excel".$url,
-            "home" => "/info".$url,
+            "excel_url" => "/excel?".$url,
+            "home" => "/info?total_num=".$total_num."&".$url,
             "current" => $page,
             "total_num" => $total_num,
             "total" => intval(($total_num + 9) / 10),
@@ -140,7 +198,7 @@ class IndexController extends Controller {
         ]);
     }
 
-    public static function toExcel(Request $request, Excel $excel) {
+    public static function toExcel(Request $request) {
         $is_large = 1;
         $dateTime = $request->input("date_time");
         // 时间格式转换

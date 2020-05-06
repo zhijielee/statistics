@@ -39,7 +39,7 @@
         <!-- page content -->
         <div class="right_col" role="main">
 
-       <!--      <div class="page-title">
+            <div class="page-title">
                 <div class="title_left">
                     <h3>流动详情</h3>
                 </div>
@@ -56,16 +56,16 @@
                 </div>
             </div>
 
-            <div class="clearfix"></div> -->
+            <div class="clearfix"></div>
             <div class="row">
                 <div class="col-md-12 col-sm-12  ">
                     <div class="x_panel">
                         <div class="x_title">
-                           <!--  <ul class="nav navbar-right panel_toolbox">
+                            <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
                             </ul>
-                            <div class="clearfix"></div> -->
+                            <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
                             <form action="{{url('/info')}}" method="post">
@@ -76,43 +76,40 @@
                                 <div class="col-sm-2">
                                     <label>部门:</label>
                                     <div class="form-group">
-                                        <input type="text" name="title" id="" class="form-control" placeholder="">
+                                        <input type="text" name="title" id="" class="form-control" placeholder="{{$param['title']}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label>工号/学号:</label>
                                     <div class="form-group">
-                                        <input type="text" name="uid" id="" class="form-control" placeholder="">
+                                        <input type="text" name="uid" id="" class="form-control" placeholder="{{$param['uid']}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label>姓名:</label>
                                     <div class="form-group">
-                                        <input type="text" name="name" id="" class="form-control" placeholder="">
+                                        <input type="text" name="name" id="" class="form-control" placeholder="{{$param['name']}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label>联系方式:</label>
                                     <div class="form-group">
-                                        <input type="text" name="phone" id="" class="form-control" placeholder="">
-                                    </div>
-                                </div>
-                           
-                                <div class="col-sm-3">
-                                    <label>地点：</label>
-                                    <div class="form-group">
-                                        <select class="form-control" name="location">
-                                            <option value="">全部</option>
-                                            @foreach($location as $loc)
-                                            <option value="{{$loc->SID}}">{{$loc->NAME}}</option>
-                                            @endforeach
-                                        </select>
+                                        <input type="text" name="phone" id="" class="form-control" placeholder="{{$param['phone']}} ">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-sm-4">
+                                    <label>地点：</label>
+                                    <div class="form-group">
+                                        <select class="form-control" name="location">
+                                            <option value="">全部</option>
+
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-sm-2">
-                                    <label>进出情况：</label>
+                                    <label>进出：</label>
                                     <div class="form-group">
                                         <select class="form-control" name="goin">
                                             <option value="0">全部</option>
@@ -121,12 +118,12 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col-sm-4">
                                     <label>时间：</label>
                                     <div class="form-group">
                                         <div class="input-prepend input-group">
                                             <span class="add-on input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="text" name="time" id="daterangepicker"
+                                            <input type="text" name="time" id="reservation-time"
                                                    class="form-control"/>
                                         </div>
                                     </div>
@@ -142,9 +139,9 @@
                                 <div class="col-sm-1">
                                     <label>&nbsp;</label>
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-info">
+                                        <a href="{{url($excel_url)}}"><button type="button" class="btn btn-info">
                                             <i class="glyphicon glyphicon-download-alt">
-                                            </i></button>
+                                            </i></button></a>
                                     </div>
                                 </div>
                             </div>
@@ -171,14 +168,40 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                               
+                                                    @foreach($result as $result)
+                                                    <tr>
+                                                        <td>{{$result -> uid}}</td>
+                                                        <td>{{$result -> name}}</td>
+                                                        <td>{{$result -> time}}</td>
+                                                        @if($result -> goin == 1)
+                                                            <td>进</td>
+                                                        @elseif($result -> goin == 2)
+                                                            <td>出</td>
+                                                        @else
+                                                            <td>{{$result -> goin}}</td>
+                                                        @endif
+                                                        <td>{{$result -> body}}</td>
+                                                        <td>{{$result -> title}}</td>
+                                                        <td>{{$result -> phone}}</td>
+                                                        <td>{{$result -> location}}</td>
+                                                    </tr>
+                                                @endforeach
 
                                                 </tbody>
                                             </table>
                                         </div>
                      </div>
                  </div>
-                 
+                 <div class="row">
+                     <div class="col-sm-5">
+                                        <div class="dataTables_info" id="datatable_info" role="status"
+                                             aria-live="polite">
+                                            Showing {{($current - 1) * 10 + 1}} to {{($current - 1) * 10 + 10}}
+                                            of {{$total_num}} entries
+                                        </div>
+                                    </div>
+                     @include("pagniation")
+                 </div>
         </div>
 
         <!-- /page content -->
@@ -205,36 +228,13 @@
 
 <script type="text/javascript">
     $(function () {
-        $('#daterangepicker').daterangepicker({
+        $('input[name="date_time"]').daterangepicker({
             timePicker: true,
             timePicker24Hour: true,
           /*  startDate: moment().startOf('hour'),
             endDate: moment().startOf('hour').add(32, 'hour'),*/
-            "locale": {
-                "format": "YYYY/MM/DD HH:mm",
-                "separator": "-",
-                "applyLabel": "提交",
-                "cancelLabel": "取消",
-                "fromLabel": "From",
-                "toLabel": "To",
-                "customRangeLabel": "Custom",
-                "weekLabel": "W",
-                "daysOfWeek": ["日","一", "二", "三", "四", "五","六"],
-                "monthNames": [
-                    "1月",
-                    "2月",
-                    "3月",
-                    "4月",
-                    "5月",
-                    "6月",
-                    "7月",
-                    "8月",
-                    "9月",
-                    "10月",
-                    "11月",
-                    "12月"
-                ],
-                "firstDay": 1
+            locale: {
+                format: 'M/DD hh:mm'
             }
         });
 
